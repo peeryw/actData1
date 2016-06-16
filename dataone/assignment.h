@@ -1,18 +1,20 @@
-#ifindef ASSIGNMENT_H
+#ifndef ASSIGNMENT_H
 #define ASSIGNMENT_H
 
 #include <stdio.h>
 #include <iostream>
 #include <list>
-#include "date_h"
+#include "date.h"
 
 using namespace std;
 
 class assignment{
 	
 public:
-	bool returnedLate();
-	
+	Date dueDate;
+	string description;
+	Date assignedDate;
+	enum status{assigned = 1, completed = 2, late = 3};
 	
 	
 };
