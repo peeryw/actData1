@@ -1,4 +1,3 @@
-
 #ifndef _DATE_H_
 #define _DATE_H_
 
@@ -25,7 +24,7 @@ public:
 
 	Date(DateFormat format = DateFormat::US) :format(format){}
 
-	
+
 	Date(string date, DateFormat format = DateFormat::US) :format(format){
 		year = 1; month = 1; day = 1;
 		*this = parseDate(date, format);
@@ -126,7 +125,7 @@ public:
 	//checks if a date is valid
 	static bool valid_date(int year, int month, int day){
 
-		if (year>=0 && month >= 1 && month <= 12 && day >= 1 && day <= 31){
+		if (year >= 0 && month >= 1 && month <= 12 && day >= 1 && day <= 31){
 
 			if (is_leap_year(year) && month == 2) // check for the leap year case
 				return day <= 29;
@@ -228,7 +227,7 @@ public:
 	}
 
 	//difference between two dates in number of days.
-	int operator - (const Date& other) const{ 
+	int operator - (const Date& other) const{
 		int year_r = 0, month_r = 0, day_r = 0;
 
 		if (this->operator<(other))
@@ -298,6 +297,13 @@ public:
 	void setYear(int theYear) { year = theYear; check_valid(); }
 	void setMonth(int theMonth) { month = theMonth; check_valid(); }
 	void setDay(int theDay) { day = theDay; check_valid(); }
+
+	const Date& operator=(const Date& rhs){
+		year = rhs.year;
+		month = rhs.month;
+		day = rhs.day;
+		format = rhs.format;
+	}
 
 
 private:
