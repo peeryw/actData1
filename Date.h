@@ -54,7 +54,7 @@ public:
 	static Date parseDate(const string& date, DateFormat format){
 
 		String_Tokenizer st(date, "-/,");
-		int year = 1, month = 1, day = 1;
+		int year = 0, month = 0, day = 0;
 
 		int index = 0;
 		while (st.has_more_tokens()){
@@ -103,6 +103,10 @@ public:
 		d = parseDate(date, d.format);
 
 		return in;
+	}
+
+	friend ostream& operator <<(ostream& out, Date& d){
+		return out << d.month << "-" << d.day << "-" << d.year;
 	}
 
 	//checks whether this date < another date
@@ -303,13 +307,14 @@ public:
 		month = rhs.month;
 		day = rhs.day;
 		format = rhs.format;
+		return *this;
 	}
 
 
 private:
-	int year;
-	int month;
-	int day;
+	int year = 0;
+	int month = 0;
+	int day = 0;
 	DateFormat format;
 
 };
