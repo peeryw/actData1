@@ -65,14 +65,29 @@ assignment getAssn(){
 	return newAssn;
 }
 
-void addAssn(list<assignment> List, assignment Assn){
-	Date tempAssn, tempDue;
-	tempAssn = Assn.getAssignedDate();
-	tempDue = Assn.getDueDate();
+void addAssn(list<assignment> List){
+	string Assnstr, Duestr, Decstr;
+
+	cout << "Enter assignment date in form 00/00/0000 : \n";
+	cin >> Assnstr;
+	cout << "\nEnter assignment due date in form 00/00/0000 : \n";
+	cin >> Duestr;
+	cout << "\nEnter assignment description:\n";
+	cin >> Decstr;
+	
+	Date tempAssn(Assnstr);
+	Date tempDue(Duestr);
+	
 	if (tempDue <= tempAssn){
 		cout << "Due date is less than or equal to assigned date";
 		return;
 	}
+	
+	assignment Assn;
+	Assn.setAssignedDate(tempAssn);
+	Assn.setDueDate(tempDue);
+	Assn.setDescription(Decstr);
+	
 	list <assignment>::iterator it;
 	for (it = List.begin(); it != List.end(); it++){
 		if (*it == Assn){
@@ -81,7 +96,7 @@ void addAssn(list<assignment> List, assignment Assn){
 		}
 	}
 	List.push_back(Assn);
-}
+} // This is redundant
 
 void sort(list<assignment> L1, list<assignment> L2, list<assignment> L3){
 	L1.sort();
@@ -134,12 +149,17 @@ int main(){
 		}
 	}
 	
-	bool menuBool = false;
-	int menuInput;
-	while (!menuBool){
-		
-		cout << "welcome to the menu based assignment system!\n";
-		cout << "What would you like to do?\n";
+	bool menuBool = false; bool runAgain = true;
+	int menuInput = 0;
+	
+	cout << "Welcome to the menu based assignment system!\n";
+	
+	while(runAgain){
+		menuBool = false;
+	
+		while (!menuBool){
+	
+		cout << "\n"<< "What would you like to do?\n";
 		cout << "1. Display assignments\n"
 		<< "2. Add assignment to workload\n"
 		<< "3. Edit due date for assignment\n"
@@ -160,10 +180,13 @@ int main(){
 	}
 	
 	switch(menuInput){
-		case 1 : printAssignments(Assigned, Completed);
-		case 2 : addAssn(Assigned, <#assignment Assn#>);
+		case 1 : printAssignments(Assigned, Completed); break;
+		case 2 : addAssn(Assigned); break;
+		case 3 :
+		case 7 : printAssignments(Assigned, Completed);
+		case 8 : cout << "Goodbye!"; runAgain = false; break;
 	}
-	
+	}
 
 	
 	system("pause");

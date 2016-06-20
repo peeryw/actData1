@@ -28,7 +28,6 @@
 		045C15611D15B7B000C72E3B /* structsProj1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = structsProj1.cpp; sourceTree = "<group>"; };
 		045C15621D15B7B000C72E3B /* StringTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTokenizer.h; sourceTree = "<group>"; };
 		045C15631D15B7B000C72E3B /* Date.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Date.h; sourceTree = "<group>"; };
-		045C15641D15B7B000C72E3B /* assignment2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = assignment2.txt; sourceTree = "<group>"; };
 		045C15651D15B7B000C72E3B /* assignment.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = assignment.txt; sourceTree = "<group>"; };
 		045C15661D15B7B000C72E3B /* assignment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assignment.h; sourceTree = "<group>"; };
 		045C15671D15B7B000C72E3B /* assignment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = assignment.cpp; sourceTree = "<group>"; };
@@ -51,7 +50,6 @@
 				045C15611D15B7B000C72E3B /* structsProj1.cpp */,
 				045C15621D15B7B000C72E3B /* StringTokenizer.h */,
 				045C15631D15B7B000C72E3B /* Date.h */,
-				045C15641D15B7B000C72E3B /* assignment2.txt */,
 				045C15651D15B7B000C72E3B /* assignment.txt */,
 				045C15661D15B7B000C72E3B /* assignment.h */,
 				045C15671D15B7B000C72E3B /* assignment.cpp */,
