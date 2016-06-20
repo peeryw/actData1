@@ -96,7 +96,7 @@ void addAssn(list<assignment> List){
 		}
 	}
 	List.push_back(Assn);
-}
+} // This is redundant
 
 void sort(list<assignment> L1, list<assignment> L2, list<assignment> L3){
 	L1.sort();
@@ -150,7 +150,7 @@ int main(){
 	}
 	
 	bool menuBool = false; bool runAgain = true;
-	int menuInput;
+	int menuInput = 0;
 	
 	cout << "Welcome to the menu based assignment system!\n";
 	
@@ -181,8 +181,9 @@ int main(){
 	
 	switch(menuInput){
 		case 1 : printAssignments(Assigned, Completed); break;
-		case 2 : addAssn(Assigned, <#assignment Assn#>); break;
-		case 7 : outputList(Assigned, Completed);
+		case 2 : addAssn(Assigned); break;
+		case 3 :
+		case 7 : printAssignments(Assigned, Completed);
 		case 8 : cout << "Goodbye!"; runAgain = false; break;
 	}
 	}
