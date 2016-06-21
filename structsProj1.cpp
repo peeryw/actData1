@@ -11,6 +11,7 @@
 #include <fstream>
 #include <list>
 #include <iterator>
+#include <limits>
 
 using namespace std;
 
@@ -104,13 +105,14 @@ void sort(list<assignment> L1, list<assignment> L2, list<assignment> L3){
 	L3.sort();
 }
 
-void findAssnByDate(list<assignment> Assn, list<assignment> Comp, Date assnDate){
+void markComplete(list<assignment> Assn, list<assignment> Comp, Date assnDate){
 	list <assignment>::iterator it;
 	for (it = Assn.begin(); it != Assn.end(); it++){
 		if(it->getDueDate() == assnDate){
 			assignment Temp = *it;
 			it = Assn.erase(it);
 			Comp.push_back(Temp);
+			if 
 			return;
 		}
 	}
@@ -126,6 +128,10 @@ void printAssignments(list<assignment> Assn, list<assignment> Comp){
 		//dateString = it->getAssignedDate();
 		cout << dateString << ' ' << it->getDescription() << ' ';
 	}
+	
+}
+
+void markComplete(list<assignment> Assn, list<assignment> Comp, Date givenDate){
 	
 }
 
@@ -183,6 +189,8 @@ int main(){
 		case 1 : printAssignments(Assigned, Completed); break;
 		case 2 : addAssn(Assigned); break;
 		case 3 :
+			
+		case 5 :
 		case 7 : printAssignments(Assigned, Completed);
 		case 8 : cout << "Goodbye!"; runAgain = false; break;
 	}
