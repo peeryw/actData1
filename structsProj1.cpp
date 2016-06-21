@@ -60,10 +60,6 @@ Must submit Individual Report
 //
 //  stuctsProj1.cpp
 //  dataone
-//
-//  Created by John Goza on 6/16/16.
-//  Copyright � 2016 JohnGoza. All rights reserved.
-//
 
 #include <stdio.h>
 #include "assignment.h"
@@ -324,13 +320,13 @@ void editStatus(list<assignment> Assn, list<assignment> Comp)//edit status: late
 	}
 }
 
-void displayLate(list<assignment> Assn)//diplay number of late status
+void displayLate(list<assignment> Comp)//diplay number of late status
 {
 	// On demand, count the number of late assignments.
 	// late status should only be in the list of assigned
 	int count = 0;
 	list <assignment>::iterator it;
-	for (it = Assn.begin(); it != Assn.end(); it++) {
+	for (it = Comp.begin(); it != Comp.end(); it++) {
 		if (it->getStatus() == late) {
 			count++;
 		}
@@ -397,7 +393,7 @@ int main(){
 		case 3: editDue(Assigned); break;
 		case 4: editDescription(Assigned); break;
 		case 5: editStatus (Assigned, Completed); break;
-		case 6 : displayLate(Assigned); break;
+		case 6 : displayLate(Completed); break;
 		case 7 : printAssignments(Assigned, Completed);// needs to output to txt file to update
 		case 8 : cout << "Goodbye!\n"; runAgain = false; break;
 	}
