@@ -172,7 +172,6 @@ void markComplete(list<assignment> Assn, list<assignment> Comp, Date assnDate){
 			assignment Temp = *it;
 			it = Assn.erase(it);
 			Comp.push_back(Temp);
-			if 
 			return;
 		}
 	}
@@ -181,22 +180,23 @@ void markComplete(list<assignment> Assn, list<assignment> Comp, Date assnDate){
 }
 
 void printAssignments(list<assignment> Assn, list<assignment> Comp){
-	cout << "Completed assignments:\n";
+	
+	cout << "Assignments still due: \n";
 	list <assignment>::iterator it;
-	string dateString;
 	for (it = Assn.begin(); it != Assn.end(); it++){
-		//dateString = it->getAssignedDate();
-		cout << dateString << ' ' << it->getDescription() << ' ';
+		cout << *it << endl;
+	}
+	
+	cout << "Completed assignments:\n";
+	for (it = Comp.begin(); it != Comp.end(); it++){
+		cout << *it << endl;
 	}
 	
 }
 
-void markComplete(list<assignment> Assn, list<assignment> Comp, Date givenDate){
-	
-}
 
 int main(){
-	SetConsoleTitle(TEXT("Assignment System, Proj1A, BY: J. Goza, J. Ford, S. Peery)); // set console title
+	SetConsoleTitle(TEXT("Assignment System, Proj1A, BY: J. Goza, J. Ford, S. Peery")); // set console title
 	
 	list<assignment> Assignments;
 	list<assignment> Assigned;
