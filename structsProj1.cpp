@@ -1,3 +1,62 @@
+/*
+Name:	Jack Goza, Joshua Ford, Scott Peery
+Course:	CS303
+Program:	Project 1A
+Due Date:	
+
+Description: This is an assignment tracker. It reads in a file as well as takes 
+input from a menu based GUI. It will track the number of assignments in three ways. 
+1. assigned, 2. completed, 3. completed/uncompleted assignments that are late.
+The GUI will allow the user to read in a txt file of assignments and status: this 
+includes dates assigned, due, description, and status. The menus will also allow
+the user to do the following:
+1. add new assignment
+2. complete an assignment
+3. edit the assignment due date
+4. edit the assignment description
+5. output number of assignments due
+6. output number of assignments late
+7. output assignments due in descending order
+8. output assignments late in descending order
+The output on screen will be as follows:
+<date due>, <description>, <date assigned>, <assignment status>
+ex: 2-11-2015, linked lists, 2-2-2-15, late
+
+Inputs: Will read in a txt file into a doubly linked list
+
+Outputs: Will output to original txt file, updating and over writing to reflect
+changes made. i.e.- new assignments added, assignments completed, assignments late.
+
+Algorithm:
+
+Check that input file exists
+Read in file
+Check data before adding to lists
+Throw exception and handle if bad info
+Assign data read to doubly linked list
+while reading in data, put in descending order
+	this will make searching by date easier as well as adding
+	new assignments in the correct order maximizing efficiency
+Close file
+Do this at opening of program every time to ensure any additions or
+	changes are included for the user
+Create menu based GUI
+	Use switch case to handle choices
+
+Write to file(Update function)
+Open file for writing ONLY when output function called
+Close file when completed
+This will update and overwrite previous file with the lists in descending order,
+allowing an O(n) efficiency when imported the next time.
+
+*****SPECIAL NOTE*****
+GitHub is not user friendly to noobs, but gives extra credit
+Must submit a project report (3-4 pages) with the following information
+1. Assumptions, 2. UML class diagram, 3. Efficiency Algorithm, 4. References
+Must submit Individual Report
+
+
+*/
 //
 //  stuctsProj1.cpp
 //  dataone
@@ -20,6 +79,7 @@ Date inputDate(){
 
 	string temp;
 	while (true){
+		
 		try {
 			getline(cin, temp);
 			Date date(temp);
@@ -136,6 +196,8 @@ void markComplete(list<assignment> Assn, list<assignment> Comp, Date givenDate){
 }
 
 int main(){
+	SetConsoleTitle(TEXT("Assignment System, Proj1A, BY: J. Goza, J. Ford, S. Peery)); // set console title
+	
 	list<assignment> Assignments;
 	list<assignment> Assigned;
 	list<assignment> Completed;
