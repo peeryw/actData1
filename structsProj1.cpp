@@ -340,11 +340,31 @@ int main(){
 	list<assignment> Completed;
 
 	assignment temp;
+	
+	string FileName;//used incase of diffrent file extensions .txt and .csv
+	
+	// determine file extesnion type and name to open with fin variable
+	cout << "Enter the name of the file you want to open, please include file extension: " << endl;
+	cin >> FileName;
+	
+	/*TODO
+	 make function fetfile() to call for lines 350-360. put in a while loop until correct file
+	 has been found and loaded. give function a menu option for user to choose to try again or
+	 exit
+	 */
+	
+	// initiate input/output variables
+	ifstream fin(FileName);
+	if (!fin)//check that file exists
+	{
+		cout << "Error opening input file.\n " << "Program will now exit." << endl;
+		system("pause");
+		return -1;
+	}
 
-	ifstream in("assignment.txt");
 
-	while (in.good()){
-		in >> temp;
+	while (fin.good()){
+		fin >> temp;
 		Assignments.push_back(temp);
 		if (temp.getStatus() == assigned){
 			Assigned.push_back(temp);
