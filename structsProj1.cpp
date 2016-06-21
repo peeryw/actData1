@@ -71,6 +71,7 @@ Must submit Individual Report
 #include <list>
 #include <iterator>
 #include <limits>
+#undef max
 
 using namespace std;
 
@@ -172,7 +173,6 @@ void markComplete(list<assignment> Assn, list<assignment> Comp, Date assnDate){
 			assignment Temp = *it;
 			it = Assn.erase(it);
 			Comp.push_back(Temp);
-			if 
 			return;
 		}
 	}
@@ -181,22 +181,166 @@ void markComplete(list<assignment> Assn, list<assignment> Comp, Date assnDate){
 }
 
 void printAssignments(list<assignment> Assn, list<assignment> Comp){
-	cout << "Completed assignments:\n";
+	
+	cout << "Assignments still due: \n";
 	list <assignment>::iterator it;
-	string dateString;
 	for (it = Assn.begin(); it != Assn.end(); it++){
-		//dateString = it->getAssignedDate();
-		cout << dateString << ' ' << it->getDescription() << ' ';
+		cout << *it << endl;
+	}
+	
+	cout << "Completed assignments:\n";
+	for (it = Comp.begin(); it != Comp.end(); it++){
+		cout << *it << endl;
 	}
 	
 }
 
-void markComplete(list<assignment> Assn, list<assignment> Comp, Date givenDate){
+void updateTXTfile()
+{
+	//open text file
+	//error handleing if file has been moved
+	//overwrite existing file
+	//close file
+	return;
+}
+
+void editDue(list<assignment> Assn)//edit due date
+{// first find the assignment with the given due date.
+	//more than one assigment may share same due date
+	//Don’t edit the assignment in these cases :
+	//The assignment with the given assigned list doesn’t exists in the assigned list.
+	//The given assigned or due dates are invalid.
 	
+	assignment Temp;
+	int year, month, day;
+	Date AssnDate, oldDueDate, newDueDate, tempDate;
+	bool valid = false;
+	//input AssnDate
+	while (valid==false) {
+		cout << "Enter assignment date for editing:\n" << endl;
+		cout << "Year: " << endl;
+		cin >> year;
+		cout << "\n" << "Month: " << endl;
+		cin >> month;
+		cout << "\n" << "Day: " << endl;
+		cin >> day;
+		valid = tempDate.valid_date(year, month, day);
+		AssnDate = tempDate;
+	}
+	//input oldDueDate
+	while (valid == false) {
+		cout << "Enter old due date for assignment:\n" << endl;
+		cout << "Year: " << endl;
+		cin >> year;
+		cout << "\n" << "Month: " << endl;
+		cin >> month;
+		cout << "\n" << "Day: " << endl;
+		cin >> day;
+		valid = tempDate.valid_date(year, month, day);
+		oldDueDate = tempDate;
+	}
+	//input newDueDate
+	while (valid == false) {
+		cout << "Enter new due date for assignment:\n" << endl;
+		cout << "Year: " << endl;
+		cin >> year;
+		cout << "\n" << "Month: " << endl;
+		cin >> month;
+		cout << "\n" << "Day: " << endl;
+		cin >> day;
+		valid = tempDate.valid_date(year, month, day);
+		newDueDate = tempDate;
+	}
+	
+	list <assignment>::iterator it;
+	for (it = Assn.begin(); it != Assn.end(); it++) {
+		if (it->getAssignedDate() == AssnDate) {
+			if (it->getDueDate() == oldDueDate){
+				Temp = *it;
+				Temp.setDueDate(newDueDate);
+				//sort list
+				//update txt file
+				return;
+			}
+		}
+		cout << "Assignment not found.\n";
+		return;
+	}
+}
+
+void editDescription(list<assignment> Assn)//edit description of assignment
+{// first find the assignment with the given due date.
+	//more than one assigment may share same due date
+	//Don’t edit the assignment in these cases :
+	//The assignment with the given assigned list doesn’t exists in the assigned list.
+	//The given assigned date is invalid.
+	assignment Temp;
+	Date AssnDate;
+	string newDescription;
+	list <assignment>::iterator it;
+	for (it = Assn.begin(); it != Assn.end(); it++) {
+		if (it->getAssignedDate() == AssnDate) {
+			Temp.setDescription(newDescription);
+			//update txt file
+			return;
+		}
+		cout << "Assignment not found.\n";
+		return;
+	}
+}
+
+void editStatus(list<assignment> Assn, list<assignment> Comp)//edit status: late, complete
+{// first find the assignment with the given due date.
+	//more than one assigment may share same due date
+	//Don’t edit the assignment in these cases :
+	//The assignment with the given assigned list doesn’t exists in the assigned list.
+	//The given assigned or due dates are invalid.
+	//error handeling for other that acceptable status
+	assignment Temp;
+	Date AssnDate;
+	int newStatus;
+	list <assignment>::iterator it;
+	for (it = Assn.begin(); it != Assn.end(); it++) {
+		if (it->getAssignedDate() == AssnDate) {
+			cout << "Select status change:\n" << endl;
+			cout << "1 = completed\n" << "2 = late\n" << endl;
+			cin >> newStatus;
+			newStatus += 1;
+			assignment Temp = *it;
+			Temp.setStatus(newStatus);
+			if (newStatus == 2) {
+				//remove from assigned
+				it = Assn.erase(it);
+				//move to completed
+				Comp.push_back(Temp);
+				//resort completed list
+				return;
+			}
+			//update txt file
+			return;
+		}
+		cout << "Assignment not found.\n";
+		return;
+	}
+}
+
+void displayLate(list<assignment> Assn)//diplay number of late status
+{
+	// On demand, count the number of late assignments.
+	// late status should only be in the list of assigned
+	int count = 0;
+	list <assignment>::iterator it;
+	for (it = Assn.begin(); it != Assn.end(); it++) {
+		if (it->getStatus() == late) {
+			count++;
+		}
+		cout << count << endl;
+		return;
+	}
 }
 
 int main(){
-	SetConsoleTitle(TEXT("Assignment System, Proj1A, BY: J. Goza, J. Ford, S. Peery)); // set console title
+	SetConsoleTitle(TEXT("Assignment System, Proj1A, BY: J. Goza, J. Ford, S. Peery")); // set console title
 	
 	list<assignment> Assignments;
 	list<assignment> Assigned;
@@ -250,14 +394,15 @@ int main(){
 	switch(menuInput){
 		case 1 : printAssignments(Assigned, Completed); break;
 		case 2 : addAssn(Assigned); break;
-		case 3 :
-			
-		case 5 :
-		case 7 : printAssignments(Assigned, Completed);
-		case 8 : cout << "Goodbye!"; runAgain = false; break;
+		case 3: editDue(Assigned); break;
+		case 4: editDescription(Assigned); break;
+		case 5: editStatus (Assigned, Completed); break;
+		case 6 : displayLate(Assigned); break;
+		case 7 : printAssignments(Assigned, Completed);// needs to output to txt file to update
+		case 8 : cout << "Goodbye!\n"; runAgain = false; break;
 	}
 	}
-
+	
 	
 	system("pause");
 	return 0;
