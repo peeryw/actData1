@@ -55,11 +55,8 @@ Must submit a project report (3-4 pages) with the following information
 1. Assumptions, 2. UML class diagram, 3. Efficiency Algorithm, 4. References
 Must submit Individual Report
 
-
-*/
-//
-//  stuctsProj1.cpp
-//  dataone
+  stuctsProj1.cpp
+  dataone*/
 
 #include <stdio.h>
 #include "assignment.h"
@@ -67,6 +64,7 @@ Must submit Individual Report
 #include <list>
 #include <iterator>
 #include <limits>
+#include <Windows.h>
 #undef max
 
 using namespace std;
@@ -191,13 +189,12 @@ void printAssignments(list<assignment> Assn, list<assignment> Comp){
 	
 }
 
-void updateTXTfile()
-{
-	//open text file
-	//error handleing if file has been moved
-	//overwrite existing file
-	//close file
-	return;
+void save(string File, list<assignment> List){
+	ofstream out(File);
+	list<assignment>::iterator it;
+	for (it = List.begin(); it != List.end(); it++)
+		out << *it << endl;
+	out.close();
 }
 
 void editDue(list<assignment> Assn)//edit due date
